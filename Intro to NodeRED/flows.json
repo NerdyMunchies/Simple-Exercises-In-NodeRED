@@ -1,0 +1,1161 @@
+[
+    {
+        "id": "9b6809b4.7f89b8",
+        "type": "tab",
+        "label": "Intro to Some Nodes",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "e7e96513.245198",
+        "type": "inject",
+        "z": "9b6809b4.7f89b8",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 140,
+        "y": 100,
+        "wires": [
+            [
+                "6a25aa2a.435214"
+            ]
+        ]
+    },
+    {
+        "id": "6a25aa2a.435214",
+        "type": "debug",
+        "z": "9b6809b4.7f89b8",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 330,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "d5932145.22962",
+        "type": "http in",
+        "z": "9b6809b4.7f89b8",
+        "name": "",
+        "url": "/samplewebpage",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 160,
+        "y": 580,
+        "wires": [
+            [
+                "2e1aada9.ee5bda"
+            ]
+        ]
+    },
+    {
+        "id": "7485e1d4.e874d8",
+        "type": "http response",
+        "z": "9b6809b4.7f89b8",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 790,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "5c10b20.0a52a5",
+        "type": "change",
+        "z": "9b6809b4.7f89b8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "5",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 350,
+        "y": 260,
+        "wires": [
+            [
+                "38b60a25.bc27de"
+            ]
+        ]
+    },
+    {
+        "id": "ac24c0e3.36fe7",
+        "type": "range",
+        "z": "9b6809b4.7f89b8",
+        "minin": "-70",
+        "maxin": "70",
+        "minout": "-7",
+        "maxout": "7",
+        "action": "scale",
+        "round": true,
+        "property": "payload.temp",
+        "name": "",
+        "x": 470,
+        "y": 920,
+        "wires": [
+            [
+                "5f133b16.c9021c"
+            ]
+        ]
+    },
+    {
+        "id": "194083d1.2dfc2c",
+        "type": "split",
+        "z": "9b6809b4.7f89b8",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 450,
+        "y": 740,
+        "wires": [
+            [
+                "e169ffd0.cb16d8",
+                "dfd2f21e.9e5298"
+            ]
+        ]
+    },
+    {
+        "id": "dfd2f21e.9e5298",
+        "type": "join",
+        "z": "9b6809b4.7f89b8",
+        "name": "",
+        "mode": "auto",
+        "build": "string",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": "false",
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "x": 630,
+        "y": 740,
+        "wires": [
+            [
+                "fc8ffd2f.e122b"
+            ]
+        ]
+    },
+    {
+        "id": "9db15347.7ba1d",
+        "type": "ibmiot in",
+        "z": "9b6809b4.7f89b8",
+        "authentication": "quickstart",
+        "apiKey": "",
+        "inputType": "evt",
+        "logicalInterface": "",
+        "ruleId": "",
+        "deviceId": "tempsensor",
+        "applicationId": "",
+        "deviceType": "+",
+        "eventType": "+",
+        "commandType": "",
+        "format": "json",
+        "name": "IBM IoT",
+        "service": "quickstart",
+        "allDevices": "",
+        "allApplications": "",
+        "allDeviceTypes": true,
+        "allLogicalInterfaces": "",
+        "allEvents": true,
+        "allCommands": "",
+        "allFormats": "",
+        "qos": 0,
+        "x": 110,
+        "y": 920,
+        "wires": [
+            [
+                "50448b37.71f444",
+                "b7dfe1c9.12c098"
+            ]
+        ]
+    },
+    {
+        "id": "ae6cdf88.eb2198",
+        "type": "ibmiot out",
+        "z": "9b6809b4.7f89b8",
+        "authentication": "quickstart",
+        "apiKey": "",
+        "outputType": "evt",
+        "deviceId": "tempsensor",
+        "deviceType": "0.18.7",
+        "eventCommandType": "sensor",
+        "format": "json",
+        "data": "payload.temp",
+        "qos": 0,
+        "name": "IBM IoT",
+        "service": "quickstart",
+        "x": 480,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "702264df.80cb64",
+        "type": "function",
+        "z": "9b6809b4.7f89b8",
+        "name": "",
+        "func": "msg.payload = [{\"element\":1},{\"element\":2},{\"element\":3}];\nnode.warn(\"some sample data\");\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 270,
+        "y": 740,
+        "wires": [
+            [
+                "194083d1.2dfc2c",
+                "be167077.6bb77"
+            ]
+        ]
+    },
+    {
+        "id": "fd9740c1.8cc938",
+        "type": "delay",
+        "z": "9b6809b4.7f89b8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 1120,
+        "y": 100,
+        "wires": [
+            [
+                "18d4c8ac.3ee01f"
+            ]
+        ]
+    },
+    {
+        "id": "1bbeedc8.5916aa",
+        "type": "comment",
+        "z": "9b6809b4.7f89b8",
+        "name": "Inject & Debug nodes",
+        "info": "",
+        "x": 140,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "80d158da.92276",
+        "type": "template",
+        "z": "9b6809b4.7f89b8",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <!-- Theme Made By www.w3schools.com - No Copyright -->\n  <title>Natural Disaster Awareness</title>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\">\n  <link href=\"https://fonts.googleapis.com/css?family=Lato\" rel=\"stylesheet\" type=\"text/css\">\n  <link href=\"https://fonts.googleapis.com/css?family=Montserrat\" rel=\"stylesheet\" type=\"text/css\">\n  <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js\"></script>\n  <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\"></script>\n  <style>\n  body {\n      font: 400 15px/1.8 Lato, sans-serif;\n      color: #777;\n  }\n  h3 {\n      margin: 10px 0 30px 0;\n      letter-spacing: 10px;      \n      font-size: 20px;\n      color: #111;\n  }\n  .container {\n      padding: 80px 120px;\n  }\n\n  .carousel-inner img {\n      -webkit-filter: grayscale(90%);\n      filter: grayscale(90%); /* make all photos black and white */ \n      width: 100%; /* Set width to 100% */\n      margin: auto;\n  }\n  .carousel-caption h3 {\n      color: #fff !important;\n  }\n  @media (max-width: 600px) {\n    .carousel-caption {\n      display: none; /* Hide the carousel text when the screen is less than 600 pixels wide */\n    }\n  }\n\n  .nav-tabs li a {\n      color: #777;\n  }\n  .navbar {\n      font-family: Montserrat, sans-serif;\n      margin-bottom: 0;\n      background-color: #2d2d30;\n      border: 0;\n      font-size: 11px !important;\n      letter-spacing: 4px;\n      opacity: 0.9;\n  }\n  .navbar li a, .navbar .navbar-brand { \n      color: #d5d5d5 !important;\n  }\n  .navbar-nav li a:hover {\n      color: #fff !important;\n  }\n  .navbar-nav li.active a {\n      color: #fff !important;\n      background-color: #29292c !important;\n  }\n  .navbar-default .navbar-toggle {\n      border-color: transparent;\n  }\n\n  footer {\n      background-color: #2d2d30;\n      color: #f5f5f5;\n      padding: 32px;\n  }\n  footer a {\n      color: #f5f5f5;\n  }\n  footer a:hover {\n      color: #777;\n      text-decoration: none;\n  }  \n\n  \n\n  </style>\n</head>\n<body id=\"myPage\" data-spy=\"scroll\" data-target=\".navbar\" data-offset=\"50\">\n\n<nav class=\"navbar navbar-default navbar-fixed-top\">\n  <div class=\"container-fluid\">\n    <div class=\"navbar-header\">\n      <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#myNavbar\">\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>                        \n      </button>\n      <a class=\"navbar-brand\" href=\"#myPage\">Natural Disasters</a>\n    </div>\n    <div class=\"collapse navbar-collapse\" id=\"myNavbar\">\n      <ul class=\"nav navbar-nav navbar-right\">\n        <li><a href=\"#myPage\">HOME</a></li>\n        <li><a href=\"#earthquake\">EARTHQUAKES</a></li>\n        <li><a href=\"#contact\">CONTACT</a></li>\n      </ul>\n    </div>\n  </div>\n</nav>\n\n<div id=\"myCarousel\" class=\"carousel slide\" data-ride=\"carousel\">\n    <!-- Indicators -->\n    <ol class=\"carousel-indicators\">\n      <li data-target=\"#myCarousel\" data-slide-to=\"0\" class=\"active\"></li>\n      <li data-target=\"#myCarousel\" data-slide-to=\"1\"></li>\n    </ol>\n\n    <!-- Wrapper for slides -->\n    <div class=\"carousel-inner\" role=\"listbox\">\n      <div class=\"item active\">\n        <img src=\"https://ibm.box.com/shared/static/tcyaaluch3uvlxgswe5pe4qkk4uhq57d.jpg\" alt=\"Earthquakes\" width=\"100%\" height=\"700\">\n        <div class=\"carousel-caption\">\n          <h3>Earthquakes</h3>\n          <p>Monitor current earthquakes, twitter posts and observe some statistics</p>\n        </div>      \n      </div>\n    \n      <div class=\"item\">\n        <img src=\"https://ibm.box.com/shared/static/mfxdobdxvadnq82sj6hhqm7fo3cuteg1.jpg\" alt=\"Natural Disaster Preparedness\" width=\"100%\" height=\"700\">\n        <div class=\"carousel-caption\">\n          <h3>Natural Disaster Preparedness</h3>\n          <p>Natural disaster preparedness programs & tips are very important!</p>\n        </div>      \n      </div>\n    </div>\n\n    <!-- Left and right controls -->\n    <a class=\"left carousel-control\" href=\"#myCarousel\" role=\"button\" data-slide=\"prev\">\n      <span class=\"glyphicon glyphicon-chevron-left\" aria-hidden=\"true\"></span>\n      <span class=\"sr-only\">Previous</span>\n    </a>\n    <a class=\"right carousel-control\" href=\"#myCarousel\" role=\"button\" data-slide=\"next\">\n      <span class=\"glyphicon glyphicon-chevron-right\" aria-hidden=\"true\"></span>\n      <span class=\"sr-only\">Next</span>\n    </a>\n</div>\n\n<!-- Container (The Earthquake Section) -->\n<div id=\"earthquake\" class=\"container text-center\">\n  <h3>EARTHQUAKES</h3>\n  <p><em>The Energy of Earthquakes</em></p>\n  <p>Each year, earthquakes cause devastation to the thousands of people all over the world. In 2010 alone, there were over 21,000 earthquakes recorded. The Richter magnitude scale, is a measurement of the seismic energy released by an earthquake. It is a logarithmic scale, so a 5.0 on the Richter scale has a shaking amplitude 10 times larger than one that measures 4.0.</p>\n  <p>Taken from http://www.infographicszone.com/geography/top-5-earthquake-infographics)</p>\n  <br>\n</div>\n\n<!-- Container (Contact Section) -->\n<div id=\"contact\" class=\"container\">\n  <h3 class=\"text-center\">Contact</h3>\n  <p class=\"text-center\"><em>Details of who to contact in case of emergency</em></p>\n\n  <div class=\"row\">\n    <div class=\"col-md-4\">\n      <p><span class=\"glyphicon glyphicon-map-marker\"></span>  Some location</p>\n      <p><span class=\"glyphicon glyphicon-phone\"></span>  Phone: +123 45 6666666</p>\n      <p><span class=\"glyphicon glyphicon-envelope\"></span>  Email: someemail@email.com</p>\n  <br> \n  </div>\n  </div>\n  </div>\n\n\n<!-- Footer -->\n<footer class=\"text-center\">\n  <a class=\"up-arrow\" href=\"#myPage\" data-toggle=\"tooltip\" title=\"TO TOP\">\n    <span class=\"glyphicon glyphicon-chevron-up\"></span>\n  </a><br><br>\n  <p>Built By <a href=\"https://developer.ibm.com/code/community/advocates/advocate/mahitab.hassan\" data-toggle=\"tooltip\" title=\"Developer Experience Advocate\">Mahitab Hassan</a> With Reference From\n  <a href=\"https://www.w3schools.com\" data-toggle=\"tooltip\">www.w3schools.com</a></p> \n</footer>\n\n<script>\n$(document).ready(function(){\n  // Initialize Tooltip\n  $('[data-toggle=\"tooltip\"]').tooltip(); \n  \n  // Add smooth scrolling to all links in navbar + footer link\n  $(\".navbar a, footer a[href='#myPage']\").on('click', function(event) {\n\n    // Make sure this.hash has a value before overriding default behavior\n    if (this.hash !== \"\") {\n\n      // Prevent default anchor click behavior\n      event.preventDefault();\n\n      // Store hash\n      var hash = this.hash;\n\n      // Using jQuery's animate() method to add smooth page scroll\n      // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area\n      $('html, body').animate({\n        scrollTop: $(hash).offset().top\n      }, 900, function(){\n   \n        // Add hash (#) to URL when done scrolling (default click behavior)\n        window.location.hash = hash;\n      });\n    } // End if\n  });\n})\n</script>\n\n</body>\n</html>\n",
+        "output": "str",
+        "x": 620,
+        "y": 580,
+        "wires": [
+            [
+                "7485e1d4.e874d8"
+            ]
+        ]
+    },
+    {
+        "id": "8309fb41.052cc",
+        "type": "inject",
+        "z": "9b6809b4.7f89b8",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 140,
+        "y": 260,
+        "wires": [
+            [
+                "5c10b20.0a52a5"
+            ]
+        ]
+    },
+    {
+        "id": "90b9309d.134138",
+        "type": "debug",
+        "z": "9b6809b4.7f89b8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 930,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "2e1aada9.ee5bda",
+        "type": "change",
+        "z": "9b6809b4.7f89b8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "headers",
+                "pt": "msg",
+                "to": "{\"Content-Type\":\"text/plain\"}",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 410,
+        "y": 580,
+        "wires": [
+            [
+                "80d158da.92276"
+            ]
+        ]
+    },
+    {
+        "id": "336b64a1.46a064",
+        "type": "inject",
+        "z": "9b6809b4.7f89b8",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 940,
+        "y": 100,
+        "wires": [
+            [
+                "fd9740c1.8cc938"
+            ]
+        ]
+    },
+    {
+        "id": "18d4c8ac.3ee01f",
+        "type": "debug",
+        "z": "9b6809b4.7f89b8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 1310,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "36217dc1.80c072",
+        "type": "debug",
+        "z": "9b6809b4.7f89b8",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 870,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "c146a888.555c08",
+        "type": "http request",
+        "z": "9b6809b4.7f89b8",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "url": "https://medium.com/feed/{{req.params.username}}",
+        "tls": "",
+        "x": 670,
+        "y": 420,
+        "wires": [
+            [
+                "ac6a9b62.ec4e3",
+                "36217dc1.80c072"
+            ]
+        ]
+    },
+    {
+        "id": "ac6a9b62.ec4e3",
+        "type": "xml",
+        "z": "9b6809b4.7f89b8",
+        "name": "",
+        "property": "payload",
+        "attr": "",
+        "chr": "",
+        "x": 850,
+        "y": 420,
+        "wires": [
+            [
+                "b15a851d.37ab1",
+                "dd8583a4.4e1928"
+            ]
+        ]
+    },
+    {
+        "id": "b15a851d.37ab1",
+        "type": "change",
+        "z": "9b6809b4.7f89b8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "\t$join(payload.rss.channel[0].item.\"content:encoded\")\t",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1070,
+        "y": 420,
+        "wires": [
+            [
+                "b2ea80dc.2fae8",
+                "83149fcd.0584e"
+            ]
+        ]
+    },
+    {
+        "id": "b2ea80dc.2fae8",
+        "type": "html",
+        "z": "9b6809b4.7f89b8",
+        "name": "",
+        "property": "payload",
+        "outproperty": "payload",
+        "tag": "p",
+        "ret": "text",
+        "as": "single",
+        "x": 1270,
+        "y": 420,
+        "wires": [
+            [
+                "93de0c73.a54aa",
+                "b7a4f560.b13d"
+            ]
+        ]
+    },
+    {
+        "id": "93de0c73.a54aa",
+        "type": "change",
+        "z": "9b6809b4.7f89b8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$join(payload)",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1490,
+        "y": 420,
+        "wires": [
+            [
+                "9107c35c.ead738",
+                "3cd9d4dd.26b844"
+            ]
+        ]
+    },
+    {
+        "id": "9107c35c.ead738",
+        "type": "debug",
+        "z": "9b6809b4.7f89b8",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 1710,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "e169ffd0.cb16d8",
+        "type": "debug",
+        "z": "9b6809b4.7f89b8",
+        "name": "split",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 630,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "fc8ffd2f.e122b",
+        "type": "debug",
+        "z": "9b6809b4.7f89b8",
+        "name": "join",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 810,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "32e4ec71.7a1b7c",
+        "type": "inject",
+        "z": "9b6809b4.7f89b8",
+        "name": "inject",
+        "topic": "",
+        "payload": "{}",
+        "payloadType": "json",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 110,
+        "y": 740,
+        "wires": [
+            [
+                "702264df.80cb64"
+            ]
+        ]
+    },
+    {
+        "id": "be167077.6bb77",
+        "type": "debug",
+        "z": "9b6809b4.7f89b8",
+        "name": "original",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 460,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "60b2a54c.68208c",
+        "type": "inject",
+        "z": "9b6809b4.7f89b8",
+        "name": "",
+        "topic": "",
+        "payload": "{}",
+        "payloadType": "json",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 130,
+        "y": 1020,
+        "wires": [
+            [
+                "a0286e24.d751d8"
+            ]
+        ]
+    },
+    {
+        "id": "65abd0d8.60c84",
+        "type": "debug",
+        "z": "9b6809b4.7f89b8",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 490,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "50448b37.71f444",
+        "type": "debug",
+        "z": "9b6809b4.7f89b8",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 290,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "5f133b16.c9021c",
+        "type": "debug",
+        "z": "9b6809b4.7f89b8",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 650,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "b7dfe1c9.12c098",
+        "type": "rbe",
+        "z": "9b6809b4.7f89b8",
+        "name": "",
+        "func": "deadbandEq",
+        "gap": "50",
+        "start": "",
+        "inout": "in",
+        "property": "payload.temp",
+        "x": 290,
+        "y": 920,
+        "wires": [
+            [
+                "ac24c0e3.36fe7"
+            ]
+        ]
+    },
+    {
+        "id": "dd8583a4.4e1928",
+        "type": "debug",
+        "z": "9b6809b4.7f89b8",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 1050,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "83149fcd.0584e",
+        "type": "debug",
+        "z": "9b6809b4.7f89b8",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 1290,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "b7a4f560.b13d",
+        "type": "debug",
+        "z": "9b6809b4.7f89b8",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 1470,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "3cd9d4dd.26b844",
+        "type": "http response",
+        "z": "9b6809b4.7f89b8",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1690,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "556f3e4b.97d6c8",
+        "type": "http in",
+        "z": "9b6809b4.7f89b8",
+        "name": "",
+        "url": "/mediumfeed/:username",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 180,
+        "y": 420,
+        "wires": [
+            [
+                "33c2930c.746ccc",
+                "44269603.2a45a8"
+            ]
+        ]
+    },
+    {
+        "id": "33c2930c.746ccc",
+        "type": "change",
+        "z": "9b6809b4.7f89b8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "headers",
+                "pt": "msg",
+                "to": "{\"Content-Type\":\"text/plain\"}\"",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 450,
+        "y": 420,
+        "wires": [
+            [
+                "c146a888.555c08"
+            ]
+        ]
+    },
+    {
+        "id": "2694ca4.e05b536",
+        "type": "catch",
+        "z": "9b6809b4.7f89b8",
+        "name": "",
+        "scope": [
+            "5491acea.24c464"
+        ],
+        "x": 1150,
+        "y": 620,
+        "wires": [
+            [
+                "d5a90f7a.817b08"
+            ]
+        ]
+    },
+    {
+        "id": "5491acea.24c464",
+        "type": "function",
+        "z": "9b6809b4.7f89b8",
+        "name": "create an error",
+        "func": "node.error(\"error\",msg);\nnot.a.valid.object = 'fail';\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1340,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a05f25ec.efc428",
+        "type": "inject",
+        "z": "9b6809b4.7f89b8",
+        "name": "inject",
+        "topic": "",
+        "payload": "{}",
+        "payloadType": "json",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 1150,
+        "y": 580,
+        "wires": [
+            [
+                "5491acea.24c464"
+            ]
+        ]
+    },
+    {
+        "id": "d5a90f7a.817b08",
+        "type": "debug",
+        "z": "9b6809b4.7f89b8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 1310,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "31f4710c.afadfe",
+        "type": "status",
+        "z": "9b6809b4.7f89b8",
+        "name": "",
+        "scope": [
+            "12596f34.5c4499"
+        ],
+        "x": 1140,
+        "y": 740,
+        "wires": [
+            [
+                "1812be18.b8635a"
+            ]
+        ]
+    },
+    {
+        "id": "1812be18.b8635a",
+        "type": "debug",
+        "z": "9b6809b4.7f89b8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 1310,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "6dfbba70.8b2e9c",
+        "type": "comment",
+        "z": "9b6809b4.7f89b8",
+        "name": "Change node",
+        "info": "",
+        "x": 110,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "4f062b5f.1f3854",
+        "type": "comment",
+        "z": "9b6809b4.7f89b8",
+        "name": "HTTP Request & Response, XML & HTML nodes",
+        "info": "",
+        "x": 230,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "b3b4b5f.17b2e48",
+        "type": "comment",
+        "z": "9b6809b4.7f89b8",
+        "name": "Sample Web page",
+        "info": "",
+        "x": 130,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "ed675571.36eaf8",
+        "type": "comment",
+        "z": "9b6809b4.7f89b8",
+        "name": "Split & Join nodes",
+        "info": "",
+        "x": 130,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "105c6f5a.2c7781",
+        "type": "comment",
+        "z": "9b6809b4.7f89b8",
+        "name": "Status, Error & Catch nodes",
+        "info": "",
+        "x": 1180,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "e8a2b04c.251f98",
+        "type": "comment",
+        "z": "9b6809b4.7f89b8",
+        "name": "Delay node",
+        "info": "",
+        "x": 910,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "e8686c5d.a1a9b8",
+        "type": "comment",
+        "z": "9b6809b4.7f89b8",
+        "name": "IBM IoT, RBE, Range nodes",
+        "info": "",
+        "x": 160,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "a924c079.d55de",
+        "type": "comment",
+        "z": "9b6809b4.7f89b8",
+        "name": "Important note on function node",
+        "info": "Each function node has its own sandbox context, which does incur \na performance penalty as a sandbox context has to be established \nwhen the node is created, and then each time a message arrives at \nthe function node, the runtime has to switch into the function \nnode's context to run the code, and then switch back out to the \ncontext when the function node is completed. ",
+        "x": 610,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "12596f34.5c4499",
+        "type": "function",
+        "z": "9b6809b4.7f89b8",
+        "name": "set status & generate warning",
+        "func": "node.status({fill:\"green\",shape:\"dot\",text:\"connected\"});\nsetTimeout(function(){\n    node.warn(\"5 seconds passed\");\n    node.status({})\n   },5000); //delay is in milliseconds \nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1390,
+        "y": 700,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2d16c4e5.79935c",
+        "type": "inject",
+        "z": "9b6809b4.7f89b8",
+        "name": "inject",
+        "topic": "",
+        "payload": "{}",
+        "payloadType": "json",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 1150,
+        "y": 700,
+        "wires": [
+            [
+                "12596f34.5c4499"
+            ]
+        ]
+    },
+    {
+        "id": "44269603.2a45a8",
+        "type": "debug",
+        "z": "9b6809b4.7f89b8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 390,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "a0286e24.d751d8",
+        "type": "random",
+        "z": "9b6809b4.7f89b8",
+        "name": "",
+        "low": "-70",
+        "high": "70",
+        "inte": "true",
+        "property": "payload.temp",
+        "x": 300,
+        "y": 1020,
+        "wires": [
+            [
+                "65abd0d8.60c84",
+                "ae6cdf88.eb2198"
+            ]
+        ]
+    },
+    {
+        "id": "38b60a25.bc27de",
+        "type": "switch",
+        "z": "9b6809b4.7f89b8",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lte",
+                "v": "5",
+                "vt": "str"
+            },
+            {
+                "t": "gt",
+                "v": "5",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 530,
+        "y": 260,
+        "wires": [
+            [
+                "fb5ab18c.2eb8d"
+            ],
+            [
+                "bd85a285.4a1438"
+            ]
+        ]
+    },
+    {
+        "id": "fb5ab18c.2eb8d",
+        "type": "change",
+        "z": "9b6809b4.7f89b8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "value less than or equal 5",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 730,
+        "y": 240,
+        "wires": [
+            [
+                "90b9309d.134138"
+            ]
+        ]
+    },
+    {
+        "id": "bd85a285.4a1438",
+        "type": "change",
+        "z": "9b6809b4.7f89b8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "value greater than 5",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 730,
+        "y": 280,
+        "wires": [
+            [
+                "ca3fc456.19b12"
+            ]
+        ]
+    },
+    {
+        "id": "ca3fc456.19b12",
+        "type": "debug",
+        "z": "9b6809b4.7f89b8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 930,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "a0b4e2f0.826ca",
+        "type": "comment",
+        "z": "9b6809b4.7f89b8",
+        "name": "Template node",
+        "info": "",
+        "x": 1260,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "4af9240f.18d7cc",
+        "type": "inject",
+        "z": "9b6809b4.7f89b8",
+        "name": "",
+        "topic": "",
+        "payload": "Sending a message to the template node",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 1230,
+        "y": 260,
+        "wires": [
+            [
+                "cad98057.dddcb"
+            ]
+        ]
+    },
+    {
+        "id": "c7939acd.cb07a",
+        "type": "debug",
+        "z": "9b6809b4.7f89b8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 1590,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "cad98057.dddcb",
+        "type": "template",
+        "z": "9b6809b4.7f89b8",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "This is the payload: {{payload}} !",
+        "output": "str",
+        "x": 1400,
+        "y": 260,
+        "wires": [
+            [
+                "c7939acd.cb07a"
+            ]
+        ]
+    }
+]
