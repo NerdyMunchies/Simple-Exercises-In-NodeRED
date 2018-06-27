@@ -31,7 +31,7 @@ After clicking on **create**, an instance of the Node-RED application (which use
 
 ![img](images/7.png)
 
-* Click on **Go to your Node-RED flow editor*. This should open a fresh new flow in the Node-RED flow editor called *Flow 1*
+* Click on **Go to your Node-RED flow editor**. This should open a fresh new flow in the Node-RED flow editor called *Flow 1*
 
 ![img](images/8.png)
 
@@ -105,7 +105,7 @@ To start off, let's first examine the **template** node:
 
 ![img](images/16.png)
 
-* Add a NodeRED **template** node, which is under **function** between *inject** and **debug** nodes
+* Add a NodeRED **template** node, which is under **function** between **inject** and **debug** nodes
 
 ![img](images/17.png)
 
