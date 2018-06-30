@@ -19,7 +19,7 @@ The above explained web serice is called where data returned is  store into a cl
 
 An architecture overview of the system can be found below.
 
-![img](images/32.png)
+![img](images/33.png)
 
 ## Pre-requisite
 
