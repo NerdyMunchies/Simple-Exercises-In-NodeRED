@@ -1,0 +1,1339 @@
+[
+    {
+        "id": "7fd7ab1d.689bf4",
+        "type": "tab",
+        "label": "Earthquake Details",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "5ad30f00.d29f3",
+        "type": "tab",
+        "label": "Dashboard",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "90a43a1e.691c6",
+        "type": "subflow",
+        "name": "Subflow 1",
+        "info": "",
+        "in": [
+            {
+                "x": 517,
+                "y": 120,
+                "wires": []
+            }
+        ],
+        "out": [
+            {
+                "x": 1277,
+                "y": 120,
+                "wires": []
+            }
+        ]
+    },
+    {
+        "id": "ec03afc5.003978",
+        "type": "subflow",
+        "name": "Subflow 1 (2)",
+        "info": "",
+        "in": [
+            {
+                "x": 517,
+                "y": 120,
+                "wires": [
+                    {
+                        "id": "83e64df1.30337"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 1277,
+                "y": 120,
+                "wires": [
+                    {
+                        "id": "aebbc07d.4587f",
+                        "port": 0
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "c22f7295.c6a098",
+        "type": "twitter-credentials",
+        "z": "",
+        "screen_name": "sunlit404"
+    },
+    {
+        "id": "5e40723c.8b625c",
+        "type": "ui_group",
+        "z": "7fd7ab1d.689bf4",
+        "name": "Tweets&Map",
+        "tab": "2e5a79bd.c9874e",
+        "order": 1,
+        "disp": false,
+        "width": "16",
+        "collapse": false
+    },
+    {
+        "id": "8f5fcfa6.891368",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Dashboard",
+        "icon": "dashboard"
+    },
+    {
+        "id": "e146e017.1bc24",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-dark",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "Arial,Arial,Helvetica,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#097479",
+                    "value": "#097479",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#000000",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#0eb8c0",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#555555",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#eeeeee",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "Arial,Arial,Helvetica,sans-serif"
+                }
+            }
+        },
+        "site": {
+            "name": "Earthquake Updates",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 58,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 6,
+                "py": 6
+            }
+        }
+    },
+    {
+        "id": "64c6017.d49af8",
+        "type": "ui_group",
+        "z": "",
+        "name": "Map",
+        "tab": "8f5fcfa6.891368",
+        "order": 1,
+        "disp": false,
+        "width": "14",
+        "collapse": false
+    },
+    {
+        "id": "27e2c0c5.925048",
+        "type": "ui_group",
+        "z": "",
+        "name": "Gauges",
+        "tab": "3b6f23a0.76b50c",
+        "order": 1,
+        "disp": true,
+        "width": "6"
+    },
+    {
+        "id": "25482393.bca644",
+        "type": "ui_group",
+        "z": "",
+        "name": "Graphs",
+        "tab": "3b6f23a0.76b50c",
+        "order": 2,
+        "disp": true,
+        "width": "6"
+    },
+    {
+        "id": "6059ae9d.f47c9",
+        "type": "ui_group",
+        "z": "",
+        "name": "Earthquake Frequency",
+        "tab": "8f5fcfa6.891368",
+        "order": 3,
+        "disp": true,
+        "width": "10",
+        "collapse": false
+    },
+    {
+        "id": "2cd97d19.b41ce2",
+        "type": "ui_group",
+        "z": "",
+        "name": "Latest tweet",
+        "tab": "8f5fcfa6.891368",
+        "order": 2,
+        "disp": true,
+        "width": "10",
+        "collapse": false
+    },
+    {
+        "id": "1c4edbfa.9d2864",
+        "type": "ui_group",
+        "z": "",
+        "name": "Default",
+        "tab": "",
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "a229e78e.c74d88",
+        "type": "ui_group",
+        "z": "",
+        "name": "Group 1",
+        "tab": "",
+        "order": 1,
+        "disp": false,
+        "width": "30",
+        "collapse": false
+    },
+    {
+        "id": "7feff711.d742f8",
+        "type": "ui_group",
+        "z": "",
+        "name": "Group 1",
+        "tab": "",
+        "order": 1,
+        "disp": false,
+        "width": "30",
+        "collapse": false
+    },
+    {
+        "id": "1222b523.593d13",
+        "type": "debug",
+        "z": "7fd7ab1d.689bf4",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 1350,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "1cf0c6b1.2890a9",
+        "type": "debug",
+        "z": "7fd7ab1d.689bf4",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 423,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "7829b1fe.df9f4",
+        "type": "search place",
+        "z": "7fd7ab1d.689bf4",
+        "query": "Location",
+        "maxrows": "1",
+        "style": "SHORT",
+        "username": "sunlit404",
+        "debug": false,
+        "name": "",
+        "x": 443,
+        "y": 380,
+        "wires": [
+            [
+                "f0cb5191.eed96",
+                "d7569abb.c2e05"
+            ]
+        ]
+    },
+    {
+        "id": "f0cb5191.eed96",
+        "type": "debug",
+        "z": "7fd7ab1d.689bf4",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 623,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "7bae7300.82b8e4",
+        "type": "split",
+        "z": "7fd7ab1d.689bf4",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 1346,
+        "y": 120,
+        "wires": [
+            [
+                "72028737.bc3708"
+            ]
+        ]
+    },
+    {
+        "id": "d356a34c.3058c8",
+        "type": "change",
+        "z": "7fd7ab1d.689bf4",
+        "name": "Set GeoNames Query",
+        "rules": [
+            {
+                "t": "set",
+                "p": "query",
+                "pt": "msg",
+                "to": "payload.Location",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "details",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 213,
+        "y": 380,
+        "wires": [
+            [
+                "1cf0c6b1.2890a9",
+                "7829b1fe.df9f4"
+            ]
+        ]
+    },
+    {
+        "id": "d7569abb.c2e05",
+        "type": "change",
+        "z": "7fd7ab1d.689bf4",
+        "name": "Set Lon & Lat",
+        "rules": [
+            {
+                "t": "set",
+                "p": "location.lon",
+                "pt": "msg",
+                "to": "payload.geonames[0].lng",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "location.lat",
+                "pt": "msg",
+                "to": "payload.geonames[0].lat",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 653,
+        "y": 380,
+        "wires": [
+            [
+                "8ccc42ed.bd3788"
+            ]
+        ]
+    },
+    {
+        "id": "6e7b0df5.e72164",
+        "type": "change",
+        "z": "7fd7ab1d.689bf4",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\t   \"name\": parts.index,\t   \"Continent\":details.Continent,\t   \"Location\":details.Location,\t   \"Magnitude\":details.Magnitude,\t   \"Radial Distance\":details.\"Radial Distance\",\t   \"Source\":details.Source,\t   \"Event Date\":details.\"Event Date\",\t   \"longitude\": data.coord.lon,\t   \"latitude\":data.coord.lat,\t   \"Type\":details.Type,\t   \"Temperature\":data.main.temp,\t   \"Pressure\":data.main.pressure,\t   \"Humidity\":data.main.humidity,\t   \"Wind Speed\":data.wind.speed,\t   \"Wind Direction\":data.wind.deg,\t   \"Cloud Coverage\":data.clouds.all,\t   \"SIDC\" : \"EONPAC------\",\t   \"command\":{\t   \"heatmap\": {\t        \"gradient\": {\t            \"0.1\": \"blue\",\t            \"0.3\": \"green\",\t            \"0.6\": \"orange\",\t            \"0.9\": \"red\"\t        }\t    }\t   }\t   \t}\t",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 203,
+        "y": 630,
+        "wires": [
+            [
+                "89abe80.502b798"
+            ]
+        ]
+    },
+    {
+        "id": "7aabccc0.e6602c",
+        "type": "debug",
+        "z": "7fd7ab1d.689bf4",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 923,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "236d63e9.672c5c",
+        "type": "http response",
+        "z": "7fd7ab1d.689bf4",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 923,
+        "y": 630,
+        "wires": []
+    },
+    {
+        "id": "89abe80.502b798",
+        "type": "join",
+        "z": "7fd7ab1d.689bf4",
+        "name": "",
+        "mode": "auto",
+        "build": "array",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 403,
+        "y": 630,
+        "wires": [
+            [
+                "da225ce4.c4c9e",
+                "236d63e9.672c5c"
+            ]
+        ]
+    },
+    {
+        "id": "e24a728a.d9c7",
+        "type": "change",
+        "z": "7fd7ab1d.689bf4",
+        "name": "Remove Unnecessary Properties",
+        "rules": [
+            {
+                "t": "delete",
+                "p": "details",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "location",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "data",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "time",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "description",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "query",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "title",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "statusCode",
+                "pt": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 653,
+        "y": 630,
+        "wires": [
+            [
+                "7aabccc0.e6602c"
+            ]
+        ]
+    },
+    {
+        "id": "9b677b0f.66352",
+        "type": "comment",
+        "z": "7fd7ab1d.689bf4",
+        "name": "Get Earthquake Info",
+        "info": "Grab info on earthquakes that happened in the last 24 hrs",
+        "x": 1046,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "ff9d7239.5eaaf8",
+        "type": "http in",
+        "z": "7fd7ab1d.689bf4",
+        "name": "",
+        "url": "/earthquakes",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 143,
+        "y": 115,
+        "wires": [
+            [
+                "c7772e46.2d2588"
+            ]
+        ]
+    },
+    {
+        "id": "dc5c5e73.ae8f38",
+        "type": "comment",
+        "z": "7fd7ab1d.689bf4",
+        "name": "Create Custom Earthquake Web service",
+        "info": "Create Custom Web service for getting earthquake details",
+        "x": 213,
+        "y": 35,
+        "wires": []
+    },
+    {
+        "id": "c7772e46.2d2588",
+        "type": "link out",
+        "z": "7fd7ab1d.689bf4",
+        "name": "earthquake web service link out",
+        "links": [
+            "24e587a0.154a4"
+        ],
+        "x": 288,
+        "y": 115,
+        "wires": []
+    },
+    {
+        "id": "24e587a0.154a4",
+        "type": "link in",
+        "z": "7fd7ab1d.689bf4",
+        "name": "earthquake info link in",
+        "links": [
+            "c7772e46.2d2588"
+        ],
+        "x": 971,
+        "y": 120,
+        "wires": [
+            [
+                "9ad8a84a.40a81"
+            ]
+        ]
+    },
+    {
+        "id": "72028737.bc3708",
+        "type": "link out",
+        "z": "7fd7ab1d.689bf4",
+        "name": "earthquake info link out",
+        "links": [
+            "1dc7fcaf.ae2583"
+        ],
+        "x": 1448,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "1dc7fcaf.ae2583",
+        "type": "link in",
+        "z": "7fd7ab1d.689bf4",
+        "name": "coordinates info link in",
+        "links": [
+            "72028737.bc3708"
+        ],
+        "x": 68,
+        "y": 380,
+        "wires": [
+            [
+                "d356a34c.3058c8"
+            ]
+        ]
+    },
+    {
+        "id": "54c610cb.f42a7",
+        "type": "comment",
+        "z": "7fd7ab1d.689bf4",
+        "name": "Get Coordinates",
+        "info": "Grab lat & lon based on location name",
+        "x": 133,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "8ccc42ed.bd3788",
+        "type": "link out",
+        "z": "7fd7ab1d.689bf4",
+        "name": "coordinates info link out",
+        "links": [
+            "547ae50c.66024c"
+        ],
+        "x": 808,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "ac900d05.452728",
+        "type": "comment",
+        "z": "7fd7ab1d.689bf4",
+        "name": "Set Earthquake Details for HTTP Response",
+        "info": "",
+        "x": 223,
+        "y": 550,
+        "wires": []
+    },
+    {
+        "id": "a7a4d3a3.80983",
+        "type": "link in",
+        "z": "7fd7ab1d.689bf4",
+        "name": "earthquake web service link in",
+        "links": [
+            "d036533.ce94f3"
+        ],
+        "x": 68,
+        "y": 630,
+        "wires": [
+            [
+                "6e7b0df5.e72164"
+            ]
+        ]
+    },
+    {
+        "id": "764469a5.466a3",
+        "type": "http request",
+        "z": "5ad30f00.d29f3",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "url": "https://intro-to-nodered.mybluemix.net/earthquakes",
+        "tls": "",
+        "x": 310,
+        "y": 240,
+        "wires": [
+            [
+                "d4870e2d.65dd5"
+            ]
+        ]
+    },
+    {
+        "id": "9f23a592.fef7f",
+        "type": "inject",
+        "z": "5ad30f00.d29f3",
+        "name": "",
+        "topic": "",
+        "payload": "{}",
+        "payloadType": "json",
+        "repeat": "3600",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "x": 130,
+        "y": 240,
+        "wires": [
+            [
+                "5ef3fc8e.1b6d04",
+                "764469a5.466a3"
+            ]
+        ]
+    },
+    {
+        "id": "18df0c8f.d0a9a3",
+        "type": "worldmap",
+        "z": "5ad30f00.d29f3",
+        "name": "",
+        "lat": "50",
+        "lon": "-1",
+        "zoom": "2",
+        "layer": "OSM",
+        "cluster": "",
+        "maxage": "",
+        "usermenu": "show",
+        "layers": "show",
+        "panit": "false",
+        "x": 1096,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "5d17a7f9.2b3e48",
+        "type": "ui_text",
+        "z": "5ad30f00.d29f3",
+        "group": "2cd97d19.b41ce2",
+        "order": 2,
+        "width": "10",
+        "height": "2",
+        "name": "Latest Tweet",
+        "label": "",
+        "format": "{{msg.tweet.text}}",
+        "layout": "row-center",
+        "x": 370,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "7992f597.7426dc",
+        "type": "ui_chart",
+        "z": "5ad30f00.d29f3",
+        "name": "",
+        "group": "6059ae9d.f47c9",
+        "order": 0,
+        "width": "10",
+        "height": "9",
+        "label": "",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "D/M",
+        "interpolate": "linear",
+        "nodata": "Awaiting info",
+        "dot": true,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "604800",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "x": 1576,
+        "y": 440,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "267993a6.d7b084",
+        "type": "function",
+        "z": "5ad30f00.d29f3",
+        "name": "Count",
+        "func": "var arr = msg.payload;\n\nvar counts = {};\nfor (var i = 0; i < arr.length; i++) {\n    counts[arr[i]] = 1 + (counts[arr[i]] || 0);\n}\n\nmsg.payload = counts;\n\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1136,
+        "y": 440,
+        "wires": [
+            [
+                "75808f35.4e571"
+            ]
+        ]
+    },
+    {
+        "id": "90630357.f98328",
+        "type": "change",
+        "z": "5ad30f00.d29f3",
+        "name": "Filter Continents",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.Continent",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 956,
+        "y": 440,
+        "wires": [
+            [
+                "267993a6.d7b084"
+            ]
+        ]
+    },
+    {
+        "id": "75808f35.4e571",
+        "type": "function",
+        "z": "5ad30f00.d29f3",
+        "name": "Earthquake frequency",
+        "func": "msg1 = {topic:\"Australia\", payload:msg.payload[\"Australia\"]};\nmsg2 = {topic:\"Asia\", payload:msg.payload.Asia};\nmsg3 = {topic:\"North-America\", payload:msg.payload[\"North-America\"]};\nmsg4 = {topic:\"South-America\", payload:msg.payload[\"South-America\"]};\nmsg5 = {topic:\"Europe\", payload:msg.payload.Europe};\nmsg6 = {topic:\"Africa\", payload:msg.payload.Africa};\nmsg7 = {topic:\"Antarctica\", payload:msg.payload[\"Antarctica\"]};\n\nreturn [msg1, msg2, msg3, msg4, msg5, msg6, msg7];",
+        "outputs": 7,
+        "noerr": 0,
+        "x": 1346,
+        "y": 440,
+        "wires": [
+            [
+                "7992f597.7426dc"
+            ],
+            [
+                "7992f597.7426dc"
+            ],
+            [
+                "7992f597.7426dc"
+            ],
+            [
+                "7992f597.7426dc"
+            ],
+            [
+                "7992f597.7426dc"
+            ],
+            [
+                "7992f597.7426dc"
+            ],
+            [
+                "7992f597.7426dc"
+            ]
+        ]
+    },
+    {
+        "id": "5094adfc.223714",
+        "type": "ui_template",
+        "z": "5ad30f00.d29f3",
+        "group": "64c6017.d49af8",
+        "name": "Map",
+        "order": 1,
+        "width": "14",
+        "height": "13",
+        "format": "<div align=center ng-bind-html=\"msg.payload | trusted\"></div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 470,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5ef3fc8e.1b6d04",
+        "type": "template",
+        "z": "5ad30f00.d29f3",
+        "name": "Display",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<iframe src=\"/worldmap\" height=670 width=870></iframe>",
+        "x": 300,
+        "y": 100,
+        "wires": [
+            [
+                "5094adfc.223714"
+            ]
+        ]
+    },
+    {
+        "id": "feb5aca.b07815",
+        "type": "openweathermap",
+        "z": "7fd7ab1d.689bf4",
+        "name": "",
+        "wtype": "current",
+        "lon": "",
+        "lat": "",
+        "city": "",
+        "country": "",
+        "language": "en",
+        "x": 1143,
+        "y": 380,
+        "wires": [
+            [
+                "d036533.ce94f3",
+                "36dec5f2.b214aa"
+            ]
+        ]
+    },
+    {
+        "id": "4a0e9a79.24328c",
+        "type": "comment",
+        "z": "7fd7ab1d.689bf4",
+        "name": "Get Weather Info",
+        "info": "Grab info on current weather",
+        "x": 1033,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "547ae50c.66024c",
+        "type": "link in",
+        "z": "7fd7ab1d.689bf4",
+        "name": "weather info link out",
+        "links": [
+            "8ccc42ed.bd3788"
+        ],
+        "x": 974,
+        "y": 380,
+        "wires": [
+            [
+                "feb5aca.b07815"
+            ]
+        ]
+    },
+    {
+        "id": "46119c1c.76c284",
+        "type": "comment",
+        "z": "5ad30f00.d29f3",
+        "name": "Reflect Changes in /worldmap into Dashboard",
+        "info": "",
+        "x": 240,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "7a7ae9f8.028df8",
+        "type": "comment",
+        "z": "5ad30f00.d29f3",
+        "name": "Send Points to /worldmap",
+        "info": "",
+        "x": 896,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "425e3e4c.c2b7b8",
+        "type": "comment",
+        "z": "5ad30f00.d29f3",
+        "name": "Send Points to /worldmap",
+        "info": "",
+        "x": 896,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "d4870e2d.65dd5",
+        "type": "link out",
+        "z": "5ad30f00.d29f3",
+        "name": "earthquake points link out",
+        "links": [
+            "e40bdc4a.92fa88",
+            "600470d0.27aa48",
+            "b6168f42.dacd7"
+        ],
+        "x": 455,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "b6168f42.dacd7",
+        "type": "link in",
+        "z": "5ad30f00.d29f3",
+        "name": "earthquake points link in",
+        "links": [
+            "d4870e2d.65dd5"
+        ],
+        "x": 801,
+        "y": 100,
+        "wires": [
+            [
+                "3e7cacc6.b093dc"
+            ]
+        ]
+    },
+    {
+        "id": "b45e378d.ea2c98",
+        "type": "comment",
+        "z": "5ad30f00.d29f3",
+        "name": "Save to Cloudant DB",
+        "info": "",
+        "x": 886,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "600470d0.27aa48",
+        "type": "link in",
+        "z": "5ad30f00.d29f3",
+        "name": "cloudant link in",
+        "links": [
+            "d4870e2d.65dd5"
+        ],
+        "x": 801,
+        "y": 240,
+        "wires": [
+            [
+                "91e728cf.772e18"
+            ]
+        ]
+    },
+    {
+        "id": "e40bdc4a.92fa88",
+        "type": "link in",
+        "z": "5ad30f00.d29f3",
+        "name": "earthquake freq link in",
+        "links": [
+            "d4870e2d.65dd5"
+        ],
+        "x": 801,
+        "y": 440,
+        "wires": [
+            [
+                "90630357.f98328",
+                "a57eb007.9deb1"
+            ]
+        ]
+    },
+    {
+        "id": "eaa5e06f.457358",
+        "type": "comment",
+        "z": "5ad30f00.d29f3",
+        "name": "Display Latest Tweet",
+        "info": "",
+        "x": 160,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "9ad8a84a.40a81",
+        "type": "subflow:ec03afc5.003978",
+        "z": "7fd7ab1d.689bf4",
+        "name": "rsoeedis_earthquake",
+        "x": 1136,
+        "y": 120,
+        "wires": [
+            [
+                "1222b523.593d13",
+                "7bae7300.82b8e4"
+            ]
+        ]
+    },
+    {
+        "id": "f92dfe6e.4579e8",
+        "type": "status",
+        "z": "7fd7ab1d.689bf4",
+        "name": "",
+        "scope": [
+            "4e1bdc8e.6a947c"
+        ],
+        "x": 1193,
+        "y": 620,
+        "wires": [
+            [
+                "38b300d8.e57ef"
+            ]
+        ]
+    },
+    {
+        "id": "38b300d8.e57ef",
+        "type": "debug",
+        "z": "7fd7ab1d.689bf4",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "status",
+        "x": 1363,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "d036533.ce94f3",
+        "type": "link out",
+        "z": "7fd7ab1d.689bf4",
+        "name": "weather info link in",
+        "links": [
+            "a7a4d3a3.80983"
+        ],
+        "x": 1308,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "312ac128.586f4e",
+        "type": "catch",
+        "z": "7fd7ab1d.689bf4",
+        "name": "",
+        "scope": [
+            "4e1bdc8e.6a947c"
+        ],
+        "x": 1183,
+        "y": 560,
+        "wires": [
+            [
+                "662b2c64.45fc54"
+            ]
+        ]
+    },
+    {
+        "id": "662b2c64.45fc54",
+        "type": "debug",
+        "z": "7fd7ab1d.689bf4",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "error",
+        "x": 1353,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "83e64df1.30337",
+        "type": "change",
+        "z": "ec03afc5.003978",
+        "name": "Set Headers",
+        "rules": [
+            {
+                "t": "set",
+                "p": "headers",
+                "pt": "msg",
+                "to": "{\"Content-Type\": \"application/JSON\"}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 670,
+        "y": 120,
+        "wires": [
+            [
+                "4e3135d1.79e2ec"
+            ]
+        ]
+    },
+    {
+        "id": "4e3135d1.79e2ec",
+        "type": "function",
+        "z": "ec03afc5.003978",
+        "name": "Use rsoeedis",
+        "func": "var rsoeedis = global.get('rsoeedis');\n\nconst earthquakes = rsoeedis.RsoeEdisClient.earthquakes();\n\nearthquakes.then(result => {\n    node.status({fill:\"yellow\",shape:\"dot\",text:\"geting rsoeedis earthquakes info\"});\n    node.warn(\"rsoeedis earthquakes info retrieved\");\n    node.status({});   // to clear the status\n    \n    //function needs to perform an asynchronous action before sending a message\n    //it cannot return the message at the end of the function\n    node.send({payload:result,req:msg.req,res:msg.res});\n\n}).catch(error => {\n    node.status({fill:\"red\",shape:\"ring\",text:\"error\"});\n    node.error(\"Error!! \", error);\n});\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 890,
+        "y": 120,
+        "wires": [
+            [
+                "aebbc07d.4587f"
+            ]
+        ]
+    },
+    {
+        "id": "aebbc07d.4587f",
+        "type": "change",
+        "z": "ec03afc5.003978",
+        "name": "Set Earthquake Info",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.{\t\"Type\": Earthquake\",\t   \"Continent\":$replace(continent, \" &amp;\", \",\"),\t   \"Location\": $join([location, state, country], \", \"),\t   \"Magnitude\": magnitude,\t   \"Radial Distance\": $join([$string(\t       $round($power(\t           2.7182818284590452353602874713526624977572470936999595749669676277240766303535475945713821785251664274,\t           magnitude / 1.01 - 0.13\t       ),3)\t   ), \" km\"]),\t   \"Source\": source,\t   \"Event Date\": eventDate\t}\t",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1100,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6be2f1d.33c629",
+        "type": "comment",
+        "z": "7fd7ab1d.689bf4",
+        "name": "Get errors & status",
+        "info": "",
+        "x": 1223,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "8b493e27.4d1f7",
+        "type": "twitter in",
+        "z": "5ad30f00.d29f3",
+        "twitter": "c22f7295.c6a098",
+        "tags": "earthquake magnitude, earthquake hits",
+        "user": "false",
+        "name": "Earthquake Tweets",
+        "topic": "tweets",
+        "inputs": 0,
+        "x": 150,
+        "y": 440,
+        "wires": [
+            [
+                "5d17a7f9.2b3e48"
+            ]
+        ]
+    },
+    {
+        "id": "a57eb007.9deb1",
+        "type": "debug",
+        "z": "5ad30f00.d29f3",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 930,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "91e728cf.772e18",
+        "type": "cloudant out",
+        "z": "5ad30f00.d29f3",
+        "name": "",
+        "cloudant": "",
+        "database": "earthquakeinfo",
+        "service": "intro-to-nodered-cloudantNoSQLDB",
+        "payonly": false,
+        "operation": "insert",
+        "x": 940,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "da225ce4.c4c9e",
+        "type": "debug",
+        "z": "7fd7ab1d.689bf4",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 590,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "36dec5f2.b214aa",
+        "type": "debug",
+        "z": "7fd7ab1d.689bf4",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 1350,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "3e7cacc6.b093dc",
+        "type": "split",
+        "z": "5ad30f00.d29f3",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 916,
+        "y": 100,
+        "wires": [
+            [
+                "18df0c8f.d0a9a3"
+            ]
+        ]
+    }
+]
