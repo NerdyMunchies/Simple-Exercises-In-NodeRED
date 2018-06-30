@@ -24,6 +24,7 @@ An architecture overview of the system can be found below.
 * An IBM Cloud account - A lite account, which is a free of charge account that doesn’t expire, can be created through going to [IBM Cloud](http://ibm.biz/devfest)
 * An account on [OpenWeatherMap](https://home.openweathermap.org) to retrieve an API key
 * An account on [GeoNames](http://www.geonames.org/) & enabling the account to use free web services [here](http://www.geonames.org/manageaccount)
+* An account on [Twitter](https://twitter.com/) & creating a twitter application [here](http://apps.twitter.com/)
 
 ## Creating the Node-RED Application
 
@@ -77,7 +78,7 @@ functionGlobalContext: {
 },
 ```
 * Go to package.json file and define it as a dependency
-```JSON
+```
 "dependencies": {
   ...,
   "rsoeedis":"0.0.2"
@@ -107,7 +108,7 @@ earthquakes.then(result => {
 });
 ```
 * Next, add a **change** node, where you will be setting the message payload to a JSONata expression as follows (JSONata is simply a querying language)
-```JSON
+```
 payload.{
 "Type": Earthquake",
    "Continent":$replace(continent, " &amp;", ","),
@@ -139,7 +140,7 @@ payload.{
 * Add openwethermap node to which you will be adding the API key from [here](https://home.openweathermap.org/api_keys) after 
 creating an account
 * Add another **change node** that will set the message payload to the output of a JSONata expression that will format things in the desired manner. The JSONata expression is as follows
-```JSON
+```
 {
    "name": parts.index,
    "Continent":details.Continent,
@@ -179,13 +180,26 @@ creating an account
 
 ![img](images/15.png)
 
-* After some cleaning up using **subflows** and **link** node, the flow will look as follows
+* After some cleaning up using **subflows** and **link** node, the flow will look as follows (**error** and **status** nodes were also added)
 
 ![img](images/16.png)
 
 ### Creating the Dashboard
 * Edit the flow and name it *Dashboard*
-* Got to **Manage palette** and install **node-red-contrib-web-worldmap** and **node-red-dashboard**. **node-red-contrib-web-worldmap** is used to create a map on which points corresponding to locations where earthquakes are taking place in the last 24 hours are plotted and **node-red-dashboard** to display latest earthquake related tweets and the frequency of earthquakes per continent
+* Go to **Manage palette** and install **node-red-contrib-web-worldmap** and **node-red-dashboard**. **node-red-contrib-web-worldmap** is used to create a map on which points corresponding to locations where earthquakes are taking place in the last 24 hours are plotted and **node-red-dashboard** to display latest earthquake related tweets and the frequency of earthquakes per continent
+* Go to the **dashboard** tab that was added next to the **info** and **debug**. You will notice that there are 3 tabs, each used to change the look and feel of the UI
+* Create a tab by clicking on **+tab**, which can resemble a page in the UI. Edit it 
+
+![img](images/27.png)
+
+* Add a group, which is used to collate similar widgets together, to the tab by clicking on **+group**. 3 groups need to be added: one for the *Map*, one for *Latest tweet* and finally, one for *Earthquake Frequency*. One dashboard nodes are added, they will add to each of these groups.
+
+![img](images/28.png)
+
+![img](images/29.png)
+
+![img](images/30.png)
+
 * Add an **inject** node that will inject a payload with an empty JSON object ({}), after deployment and every 60 minutes
 
 ![img](images/17.png)
@@ -197,6 +211,10 @@ creating an account
 * Add a Dashbord **template** node and edit it as follows
 
 ![img](images/18.png)
+
+```HTML
+<div align=center ng-bind-html="msg.payload | trusted"></div>
+```
 
 * In parallel, add an **HTTP request** node that will call the web service we created earlier. The data returned will be displayed on map through the *worldmap* endpoint, stored in a Cloudant database and analyzed to plot a chat of earthquake frequency per continent
 
@@ -231,34 +249,22 @@ msg.payload = counts;
 
 return msg;
 ```
-
 * Add another **function** node, which will calculate the actual frequency and will put the data in a form that can be fed into a Dashboard **chart** node. Moreover, modify the number of outputs coming out of the function to *9*.
 ```javascript
-harsh_acc_ctr = global.get("harsh_acc_count");
-harsh_brake_ctr = global.get("harsh_brake_count");
-
-msg1 = {topic:"Harsh Acc.", payload:harsh_acc_ctr};
-msg2 = {topic:"Harsh Brake", payload:harsh_brake_ctr};
-
 msg1 = {topic:"Australia, New-Zealand", payload:msg.payload["Australia, New-Zealand"]};
 msg2 = {topic:"Asia", payload:msg.payload.Asia};
 msg3 = {topic:"North-America", payload:msg.payload["North-America"]};
 msg4 = {topic:"South-America", payload:msg.payload["South-America"]};
 msg5 = {topic:"Europe", payload:msg.payload.Europe};
 msg6 = {topic:"Africa", payload:msg.payload.Africa};
-msg7 = {topic:"Middle-America", payload:msg.payload["Middle-America"]};
-msg8 = {topic:"Indonesian Archipelago", payload:msg.payload["Indonesian Archipelago"]};
-msg9 = {topic:"Middle-East", payload:msg.payload["Middle-East"]};
+msg7 = {topic:"Antarctica", payload:msg.payload["Antarctica"]};
 
-
-
-return [msg1, msg2, msg3, msg4, msg5, msg6, msg7, msg8, msg9];
+return [msg1, msg2, msg3, msg4, msg5, msg6, msg7];
 ```
 * Connect the 9 outputs of the **function** node added in the previous step to a Dashboard **chart** node
 * edit the **chart** node and set the node properties
 
 ![img](images/24.png)
-
 
 ## Twitter Feed
 * Add a **twitter in** node and configure the node to add a Twitter ID. After creating an app on *apps.twitter.com*, get the consumer key & secret and the access token and secret, which will also be added to the node.
@@ -270,7 +276,9 @@ return [msg1, msg2, msg3, msg4, msg5, msg6, msg7, msg8, msg9];
 
 ![img](images/26.png)
 
+* After some cleaning up, the flow will look as follows
 
+![img](images/31.png)
 
 ## Additional Resources to Explore
 
