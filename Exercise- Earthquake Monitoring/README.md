@@ -15,9 +15,9 @@ More information about Node-RED, including the documentation, can be found [here
 First of all, a web service is defined that used an external package that talks to RSOE EDIS Rest API to get info on all earthquakes happening within the last hour. The location name corresponding to each earthquake point is then taken in order to extract the location coordinates (longitude & latitude) using GeoNames node. Based on the coordinates that the current weather conditions are retrieved using an OpenWeatherMap. 
 The above explained web serice is called where data returned is  store into a cloudant database as well as displayed on a map in a dashboard using worldmap node. Three dashboard node are used for displaying the points on the map, displaying the latest tweet on earthquakes happening along with a chart with the frequency of the earthquakes happening in each continent.
 
-## Architecture overview
+## System overview
 
-An architecture overview of the system can be found below.
+An overview of the system can be found below.
 
 ![img](images/33.png)
 
@@ -218,7 +218,7 @@ creating an account
 <div align=center ng-bind-html="msg.payload | trusted"></div>
 ```
 
-* In parallel, add an **HTTP request** node that will call the web service we created earlier. The data returned will be displayed on map through the *worldmap* endpoint, stored in a Cloudant database and analyzed to plot a chat of earthquake frequency per continent
+* In parallel, add an **HTTP request** node that will call the web service we created earlier. The data returned will be displayed on map through the *worldmap* endpoint, stored in a Cloudant database and analyzed to plot a chat of earthquake frequency per continent. <em>MAKE</em> sure to edit the **HTTP request** node and replace *<HOSTNAME>* with your nodered application hostname.
 
 ![img](images/19.png)
 
