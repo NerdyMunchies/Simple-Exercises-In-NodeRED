@@ -195,17 +195,80 @@ creating an account
 <iframe src="/worldmap" height=670 width=870></iframe>
 ```
 * Add a Dashbord **template** node and edit it as follows
+
 ![img](images/18.png)
 
-* In parallel, add an HTTP node that will call the web service we created earlier
+* In parallel, add an **HTTP request** node that will call the web service we created earlier. The data returned will be displayed on map through the *worldmap* endpoint, stored in a Cloudant database and analyzed to plot a chat of earthquake frequency per continent
+
 ![img](images/19.png)
 
-* 
+* Connect a **split** node to the **HTTP request** node, which will split the output of returned to plot each of the point representing a location. Keep the configuration of the node as default
+
+![img](images/20.png)
+
+* Connect the **split** node to the **worldmap** node to plot each point on the web map and edit the node as follows:
+
+![img](images/21.png)
+
+* Since we mentioned that the point will be stored, connect a **cloudant out** node to the previously added **HTTP request** node and configure it as seen below
+
+![img](images/22.png)
+
+* Now, in order to plot the line chart to look at the earthquake frequency per continent, first, add a **change** node to filter out the continent names
+
+![img](images/23.png)
+
+* To the **change node**, connect a function node, which will be counting the number of earthquakes currently happening per continent. In the function, add the following code
+```javascript
+var arr = msg.payload;
+
+var counts = {};
+for (var i = 0; i < arr.length; i++) {
+    counts[arr[i]] = 1 + (counts[arr[i]] || 0);
+}
+
+msg.payload = counts;
+
+return msg;
+```
+
+* Add another **function** node, which will calculate the actual frequency and will put the data in a form that can be fed into a Dashboard **chart** node. Moreover, modify the number of outputs coming out of the function to *9*.
+```javascript
+harsh_acc_ctr = global.get("harsh_acc_count");
+harsh_brake_ctr = global.get("harsh_brake_count");
+
+msg1 = {topic:"Harsh Acc.", payload:harsh_acc_ctr};
+msg2 = {topic:"Harsh Brake", payload:harsh_brake_ctr};
+
+msg1 = {topic:"Australia, New-Zealand", payload:msg.payload["Australia, New-Zealand"]};
+msg2 = {topic:"Asia", payload:msg.payload.Asia};
+msg3 = {topic:"North-America", payload:msg.payload["North-America"]};
+msg4 = {topic:"South-America", payload:msg.payload["South-America"]};
+msg5 = {topic:"Europe", payload:msg.payload.Europe};
+msg6 = {topic:"Africa", payload:msg.payload.Africa};
+msg7 = {topic:"Middle-America", payload:msg.payload["Middle-America"]};
+msg8 = {topic:"Indonesian Archipelago", payload:msg.payload["Indonesian Archipelago"]};
+msg9 = {topic:"Middle-East", payload:msg.payload["Middle-East"]};
 
 
 
+return [msg1, msg2, msg3, msg4, msg5, msg6, msg7, msg8, msg9];
+```
+* Connect the 9 outputs of the **function** node added in the previous step to a Dashboard **chart** node
+* edit the **chart** node and set the node properties
+
+![img](images/24.png)
 
 
+## Twitter Feed
+* Add a **twitter in** node and configure the node to add a Twitter ID. After creating an app on *apps.twitter.com*, get the consumer key & secret and the access token and secret, which will also be added to the node.
+* Search in **all public tweets** for *earthquake magnitude, earthquake hits*
+
+![img](images/25.png)
+
+* Connect the **twitter in** node to a Dashboard text node and configure it
+
+![img](images/26.png)
 
 
 
