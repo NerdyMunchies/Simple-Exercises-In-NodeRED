@@ -19,6 +19,8 @@ The above explained web serice is called where data returned is  store into a cl
 
 An architecture overview of the system can be found below.
 
+![img](images/32.png)
+
 ## Pre-requisite
 
 * An IBM Cloud account - A lite account, which is a free of charge account that doesn’t expire, can be created through going to [IBM Cloud](http://ibm.biz/devfest)
