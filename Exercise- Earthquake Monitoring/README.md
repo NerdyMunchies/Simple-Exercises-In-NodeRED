@@ -13,7 +13,7 @@ More information about Node-RED, including the documentation, can be found [here
 ## How does the system work?
 
 First of all, a web service is defined that used an external package that talks to RSOE EDIS Rest API to get info on all earthquakes happening within the last hour. The location name corresponding to each earthquake point is then taken in order to extract the location coordinates (longitude & latitude) using GeoNames node. Based on the coordinates that the current weather conditions are retrieved using an OpenWeatherMap. 
-The above explained web serice is called where data returned is  store into a cloudant database as well as displayed on a map in a dashboard using worldmap node. Three dashboard node are used for displaying the points on the map, displaying the latest tweet on earthquakes happening along with a chart with the frequency of the earthquakes happening in each continent.
+The above explained web serice is called where data returned is  store into a cloudant database as well as displayed on a map in a dashboard using worldmap node. Three dashboard node are used for displaying the points on the map, displaying the latest tweet on earthquakes happening along with a chart with the frequency of the earthquakes happening in each area.
 
 ## System overview
 
@@ -23,7 +23,7 @@ An overview of the system can be found below.
 
 ## Pre-requisite
 
-* An IBM Cloud account - A lite account, which is a free of charge account that doesn’t expire, can be created through going to [IBM Cloud](http://ibm.biz/devfest)
+* An IBM Cloud account - A lite account, which is a free of charge account that doesn’t expire, can be created through going to [IBM Cloud](https://ibm.biz/angelhack2018)
 * An account on [OpenWeatherMap](https://home.openweathermap.org) to retrieve an API key
 * An account on [GeoNames](http://www.geonames.org/) & enabling the account to use free web services [here](http://www.geonames.org/manageaccount)
 * An account on [Twitter](https://twitter.com/) & creating a twitter application [here](http://apps.twitter.com/)
@@ -188,7 +188,7 @@ creating an account
 
 ### Creating the Dashboard
 * Edit the flow and name it *Dashboard*
-* Go to **Manage palette** and install **node-red-contrib-web-worldmap** and **node-red-dashboard**. **node-red-contrib-web-worldmap** is used to create a map on which points corresponding to locations where earthquakes are taking place in the last 24 hours are plotted and **node-red-dashboard** to display latest earthquake related tweets and the frequency of earthquakes per continent
+* Go to **Manage palette** and install **node-red-contrib-web-worldmap** and **node-red-dashboard**. **node-red-contrib-web-worldmap** is used to create a map on which points corresponding to locations where earthquakes are taking place in the last 24 hours are plotted and **node-red-dashboard** to display latest earthquake related tweets and the frequency of earthquakes per area
 * Go to the **dashboard** tab that was added next to the **info** and **debug**. You will notice that there are 3 tabs, each used to change the look and feel of the UI
 * Create a tab by clicking on **+tab**, which can resemble a page in the UI. Edit it 
 
@@ -202,7 +202,7 @@ creating an account
 
 ![img](images/30.png)
 
-* Add an **inject** node that will inject a payload with an empty JSON object ({}), after deployment and every 60 minutes
+* Add an **inject** node that will inject a payload with an empty JSON object ({}) after deployment
 
 ![img](images/17.png)
 
@@ -218,7 +218,11 @@ creating an account
 <div align=center ng-bind-html="msg.payload | trusted"></div>
 ```
 
-* In parallel, add an **HTTP request** node that will call the web service we created earlier. The data returned will be displayed on map through the *worldmap* endpoint, stored in a Cloudant database and analyzed to plot a chat of earthquake frequency per continent. <em>MAKE</em> sure to edit the **HTTP request** node and replace *<HOSTNAME>* with your nodered application hostname.
+* Add an **inject** node that will inject a payload with an empty JSON object ({}) 1 second after deployment and every 60 minutes
+
+![img](images/inject.png)
+
+* Connect **inject** node to an **HTTP request** node that will call the web service we created earlier. The data returned will be displayed on map through the *worldmap* endpoint, stored in a Cloudant database and analyzed to plot a chat of earthquake frequency per area. <em>MAKE</em> sure to edit the **HTTP request** node and replace *<HOSTNAME>* with your nodered application hostname.
 
 ![img](images/19.png)
 
@@ -234,11 +238,11 @@ creating an account
 
 ![img](images/22.png)
 
-* Now, in order to plot the line chart to look at the earthquake frequency per continent, first, add a **change** node to filter out the continent names
+* Now, in order to plot the line chart to look at the earthquake frequency per area, first, add a **change** node to filter out the area names
 
 ![img](images/23.png)
 
-* To the **change node**, connect a function node, which will be counting the number of earthquakes currently happening per continent. In the function, add the following code
+* To the **change node**, connect a function node, which will be counting the number of earthquakes currently happening per area. In the function, add the following code
 ```javascript
 var arr = msg.payload;
 
@@ -259,9 +263,14 @@ msg3 = {topic:"North-America", payload:msg.payload["North-America"]};
 msg4 = {topic:"South-America", payload:msg.payload["South-America"]};
 msg5 = {topic:"Europe", payload:msg.payload.Europe};
 msg6 = {topic:"Africa", payload:msg.payload.Africa};
-msg7 = {topic:"Antarctica", payload:msg.payload["Antarctica"]};
 
-return [msg1, msg2, msg3, msg4, msg5, msg6, msg7];
+msg7 = {topic:"Middle-East", payload:msg.payload["Middle-East"]};
+msg8 = {topic:"Middle-America", payload:msg.payload["Middle-America"]};
+msg9 = {topic:"Indonesian Archipelago", payload:msg.payload["Indonesian Archipelago"]};
+msg10 = {topic:"Caribean Sea", payload:msg.payload["Caribean Sea"]};
+msg11 = {topic:"Pacific Ocean", payload:msg.payload["Pacific Ocean"]};
+
+return [msg1, msg2, msg3, msg4, msg5, msg6, msg7, msg8, msg9, msg10, msg11];
 ```
 * Connect the 9 outputs of the **function** node added in the previous step to a Dashboard **chart** node
 * edit the **chart** node and set the node properties
@@ -281,6 +290,37 @@ return [msg1, msg2, msg3, msg4, msg5, msg6, msg7];
 * After some cleaning up, the flow will look as follows
 
 ![img](images/31.png)
+
+## Securing Web API
+* Go to you application **Overview** page, scoll to the end of the page to find **Continuous delivery** section 
+* Click on **View toolchain**
+
+![img](images/secureapi1.png)
+
+* Click on **Eclipse Orion Web IDE** to open the online editor
+* Go to bluemix-setting.js
+* Add the following snippet before the **functionGlobalContext** object we added earlier to define username and password for the API using basic authentication used to secure it
+```javascript
+httpNodeAuth:{
+	user: "apiUser"
+	pass: ""
+}
+```
+* Get the password using *bcrypt* by going to your flow editor, installing **bcrypt** node via **Manage pallete**
+* In the same flow editor, add connect an **inject** node to a **bycrypt** node, which you will connect to **debug** node
+
+![img](images/secureapi2.png)
+
+* The **inject** will contain the password of type **string** into the **bcrypt** node (make sure the **Action** is set to **Encrypt**
+*  After injecting the password, copy the output of the **debug** node and go back to bluemix-setting.js to add it to pass (representing API's password during Basic Authentication)
+* Go to Git in the editor, commit and push all changes
+* Go back to the **IBM Cloud Dashboard** and go to your application and wait for your application to finish deploying (you can check that by looking at **Delivery Pipeline**)
+* Go back to the NodeRED flow editor editor again to secure your API
+* Go to the **HTTP** response node, enable **Use basic authentication** and enter the username and password you have defined (the password is not the the output of the **bcrypt** node, but the string that was inject to the **bcrypt** node
+* **Deploy** the changes
+* The basic authentication will be applied to all API you define
+
+![img](images/secureapi3.png)
 
 ## Additional Resources to Explore
 
