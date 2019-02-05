@@ -9,7 +9,7 @@ More information about Node-RED, including the documentation, can be found [here
 
 ## Pre-requisite
 
-An IBM Cloud account - A lite account, which is a free of charge account that doesn’t expire, can be created through going to [IBM Cloud](http://ibm.biz/stemforemiratis).
+An IBM Cloud account - A lite account, which is a free of charge account that doesn’t expire, can be created through going to [IBM Cloud](http://ibm.biz/sharjahinnovation2019).
 
 ## Creating the Node-RED Application
 
