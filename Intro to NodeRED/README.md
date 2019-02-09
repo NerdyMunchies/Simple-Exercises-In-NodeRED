@@ -349,9 +349,7 @@ $(document).ready(function(){
 
 ![img](images/23.png)
 
-You can then choose to use an **HTTP request** node, in this case or in other cases where you return a JSON object, where you will pass the end-point, the HTTP method, and the return content type expected.A different example can be seen here. 
-
-![img](images/24.png)
+You can then choose to use an **HTTP request** node, in this case or in other cases where you return a JSON object, where you will pass the end-point, the HTTP method, and the return content type expected.
 
 A more comprehensive example flow is provided as part of the JSON object that can be imported.
 
