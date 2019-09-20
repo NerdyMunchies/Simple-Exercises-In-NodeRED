@@ -1,4 +1,4 @@
-# Exercise: Very Simple Earthquake Monitoring System
+# Exercise: Very Simple Earthquake Monitoring System [Archived]
 This repository looks some of the different nodes and ways to interact with NodeRED. This includes extending NodeRED by install module/nodes, working with external libraries, visualization, etc. The application explained here looks at getting earthquake related data along with weather data in order to be up-to-date when it comes to earthquakes happening around the world.
 
 Please understand that the purpose here is to get to familarized with NodeRED as much as possible; thus, this might not represent the optimal way developing this application.
